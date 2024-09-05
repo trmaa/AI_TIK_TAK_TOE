@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -f bin/app ]; then
+	rm bin/app
+fi
+
+g++ src/*.cpp -o bin/app -Isrc/
+
+if [ -f bin/app ]; then
+	./bin/app
+else
+	echo "It wasn't compiled"
+fi
