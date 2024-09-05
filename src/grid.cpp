@@ -74,6 +74,13 @@ bool Grid::_check_player_win() {
 }
 
 int Grid::_guess_best_spot() {
+    int turn = 0;
+    for (int i = 0; i < this->_cells.size(); i++) {
+        if (this->_is_cell_ocupied(i)) {
+            turn++;
+        }
+    }
+
     int winning_combinations[8][3] = {
         {0, 1, 2}, {3, 4, 5}, {6, 7, 8},
         {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
@@ -109,11 +116,13 @@ int Grid::_guess_best_spot() {
         }
     }
     
-    for (int vertex : this->_vertex_ids) {
-        if (_is_cell_ocupied(vertex)) {
-            for (int side : this->_side_ids) {
-                if (!_is_cell_ocupied(side)) {
-                    return side;
+    if (turn == 1) {
+        for (int vertex : this->_vertex_ids) {
+            if (_is_cell_ocupied(vertex)) {
+                for (int side : this->_side_ids) {
+                    if (!_is_cell_ocupied(side)) {
+                        return side;
+                    }
                 }
             }
         }
