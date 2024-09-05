@@ -109,24 +109,6 @@ int Grid::_guess_best_spot() {
         }
     }
 
-    for (int side : this->_side_ids) {
-        if (_is_cell_ocupied(side)) {
-            if (!_is_cell_ocupied(this->_center_id)) {
-                return this->_center_id;
-            }
-        }
-    }
-    
-    for (int vertex : this->_vertex_ids) {
-        if (_is_cell_ocupied(vertex)) {
-            for (int vertex2 : this->_vertex_ids) {
-                if (!_is_cell_ocupied(vertex2)) {
-                    return vertex2;
-                }
-            }
-        }
-    }
-
     if (!_is_cell_ocupied(this->_center_id)) {
         return this->_center_id;
     }
