@@ -23,7 +23,7 @@ private:
 	bool _check_player_win();
 
 	bool _is_cell_ocupied(int id) {
-		return this->_cells[id].size() != 1;
+		return this->_cells[id] == this->_o_value || this->_cells[id] == this->_x_value;
 	}
 	bool _is_cell_inrange(int id) {
 		return (id < this->_cells.size() && id >= 0);
