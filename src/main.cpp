@@ -35,7 +35,7 @@ int main() {
         play_game();
         std::cout << "Do you want to play again? (Y/n): ";
         std::cin >> play_again;
-    } while (play_again != 'n');
+    } while (play_again != 'n' && play_again != 'N');
 
     std::cout << "Thanks for playing!" << std::endl;
 }

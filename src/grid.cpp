@@ -39,22 +39,21 @@ void Grid::insert(std::string who) {
         id = this->_guess_best_spot();
     }
 
-    if (this->_is_cell_inrange(id)) {
-        if (this->_is_cell_ocupied(id)) {
-            std::cerr << who << ", that is already picked" << std::endl;
-            this->insert(who);
-        }
-        this->_cells[id] = who == "player" ? this->_o_value : this->_x_value;
-
-        if (who == "player") {
-            if (this->_check_player_win()) {
-                this->_gamestate = "won";
-                return;
-            }
-        }
-    } else {
+    if (!this->_is_cell_inrange(id)) {
         std::cerr << who << ", id out of range!!!" << std::endl;
         this->insert(who);
+    }
+
+    if (this->_is_cell_ocupied(id)) {
+        std::cerr << who << ", that is already picked" << std::endl;
+        this->insert(who);
+    }
+
+    this->_cells[id] = who == "player" ? this->_o_value : this->_x_value;
+
+    if (this->_check_player_win() && who == "player") {
+        this->_gamestate = "won";
+        return;
     }
 }
 
